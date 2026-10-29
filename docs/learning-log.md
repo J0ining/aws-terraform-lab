@@ -15,6 +15,17 @@
 - **Fix:**
 - **Questions:**
 
+
+## 29/10/2027 
+
+- **Done:** Refactor to use variables and check with validate to add a subnet.
+- **Learned** Use of variables between the root module and the rest of the modules. Use of data blocl
+-  **Problem:** Trying to figure out moving values between modules and use for each to conditionate the creation of resources.
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**
+
+
 - **Done:**
 -  **Problem:**
 - **Diagnosis:**
