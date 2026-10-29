@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 module "network" {
-  source = "../../modules/network"
+  source          = "../../modules/network"
+  base_cidr_block = "10.0.0.0/16"
 }
 
