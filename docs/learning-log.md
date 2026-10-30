@@ -19,10 +19,20 @@
 ## 29/10/2027 
 
 - **Done:** Refactor to use variables and check with validate to add a subnet.
-- **Learned** Use of variables between the root module and the rest of the modules. Use of data blocl
+- **Learned** Use of variables between the root module and the rest of the modules. Use of data block
 -  **Problem:** Trying to figure out moving values between modules and use for each to conditionate the creation of resources.
 - **Diagnosis:**
 - **Fix:**
+- **Questions:**
+
+
+## 30/10/2027 
+
+- **Done:** 4 subnets created in the new vpc, with the distintion between private and public in code. Subnet data in root module and used int the network modules
+- **Learned** Use of for_each. How to use it with more complex structures
+-  **Problem:** Getting for_each to work with a list of objects. It just accepts set of string or maps.
+- **Diagnosis:** My list of objects needs to comply with the rules so i need to refactor the list to a map or something else.
+- **Fix:** The list remains the same. When the module wants to use it with for_each, I create a for loop to assign the objects a key value. tomap() works but isnt really necessary 
 - **Questions:**
 
 

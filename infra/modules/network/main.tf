@@ -7,13 +7,15 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "public" {
-  for_each= var.availability_zones_region
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+resource "aws_subnet" "main" {
 
+  for_each = {for subnet in var.subnets_data :"${subnet.type}.${var.availability_zones_region[subnet.az]}" => subnet}
+  
+  vpc_id     = aws_vpc.main.id
+  availability_zone  = var.availability_zones_region[each.value.az]
+  cidr_block = each.value.cidr
 
   tags = {
-    Name = "Main"
+    Name = "Main ${each.value.type} Subnet ${var.availability_zones_region[each.value.az]} "
   }
 }
