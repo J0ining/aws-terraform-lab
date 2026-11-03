@@ -41,3 +41,20 @@
 - **Diagnosis:**
 - **Fix:**
 - **Questions:**
+
+
+## 03/10/2027 
+
+- **Done:** Internet GW, 2 new route tables, 1 private and 1 public, including resources to create the associations between them. Route tables attached to corresponding subnets.
+- **Learned** Use tags to assign private and public subnet. For_each resources
+-  **Problem:** 
+- **Diagnosis:** 
+- **Fix:** 
+- **Questions:**
+
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**

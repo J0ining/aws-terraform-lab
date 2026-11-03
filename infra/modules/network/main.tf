@@ -3,9 +3,18 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default" #Shared hardware. Default option. "Dedicated" option charges a fee
 
   tags = {
-    Name = "main"
+    Name = "Main VPC"
   }
 }
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "Main IGW"
+  }
+}
+
 
 resource "aws_subnet" "main" {
 
@@ -16,6 +25,39 @@ resource "aws_subnet" "main" {
   cidr_block = each.value.cidr
 
   tags = {
-    Name = "Main ${each.value.type} Subnet ${var.availability_zones_region[each.value.az]} "
+    Name = "Main ${each.value.type} Subnet ${var.availability_zones_region[each.value.az]}"
+    Type = each.value.type
   }
 }
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "Public Route Table"
+  }
+}
+
+
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "Private Route Table"
+  }
+}
+
+resource "aws_route_table_association" "route_association" {
+  for_each= aws_subnet.main
+  subnet_id      = each.value.id
+
+  route_table_id = each.value.tags.Type == "public" ? aws_route_table.public.id : aws_route_table.private.id
+}
+
+
