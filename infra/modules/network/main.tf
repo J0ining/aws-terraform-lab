@@ -18,11 +18,11 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_subnet" "main" {
 
-  for_each = {for subnet in var.subnets_data :"${subnet.type}.${var.availability_zones_region[subnet.az]}" => subnet}
-  
-  vpc_id     = aws_vpc.main.id
-  availability_zone  = var.availability_zones_region[each.value.az]
-  cidr_block = each.value.cidr
+  for_each = { for subnet in var.subnets_data : "${subnet.type}.${var.availability_zones_region[subnet.az]}" => subnet }
+
+  vpc_id            = aws_vpc.main.id
+  availability_zone = var.availability_zones_region[each.value.az]
+  cidr_block        = each.value.cidr
 
   tags = {
     Name = "Main ${each.value.type} Subnet ${var.availability_zones_region[each.value.az]}"
@@ -54,8 +54,8 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table_association" "route_association" {
-  for_each= aws_subnet.main
-  subnet_id      = each.value.id
+  for_each  = aws_subnet.main
+  subnet_id = each.value.id
 
   route_table_id = each.value.tags.Type == "public" ? aws_route_table.public.id : aws_route_table.private.id
 }

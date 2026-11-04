@@ -58,3 +58,20 @@
 - **Diagnosis:**
 - **Fix:**
 - **Questions:**
+
+
+## 04/10/2027 
+
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**
+
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**
