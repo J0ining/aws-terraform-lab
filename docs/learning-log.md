@@ -63,7 +63,8 @@
 ## 04/10/2027 
 
 
-- **Done:**
+- **Done:** Outputs for vpc_id, subnets_info and public/private subnets ids. Inputs validations for the subnet data in main.tf in the root module
+- **Learned** More uses of "for" expression in the contex of outputs to select especific data from a list and used in validation with alltrue to validate multiple objects in a list.
 -  **Problem:**
 - **Diagnosis:**
 - **Fix:**
