@@ -3,6 +3,7 @@ on:
     push:
         paths:
             - 'infra/**'
+            - '.github/workflows/**'
     workflow_dispatch:
 defaults:
     run:
@@ -21,12 +22,12 @@ jobs:
             - name: Terraform Init
               id: init
               run: terraform init -input=false
-              working-directory: ./infra/env/dev
+              working-directory: infra/env/dev
               
             - name: Terraform Validate
               id: validate
               run: terraform validate -no-color
-              working-directory: ./infra/env/dev
+              working-directory: infra/env/dev
 
             - name: Init TFLint
               run: tflint --init 
