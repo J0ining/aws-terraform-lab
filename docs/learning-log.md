@@ -76,3 +76,20 @@
 - **Diagnosis:**
 - **Fix:**
 - **Questions:**
+
+## 05/10/2027 
+
+
+- **Done:** Set up Github Actions Workflow to do terraform validations (fmt, validate, tflint and checkov). Corrections of error from tfling and checkov.
+- **Learned** Basic configuration of workflow in the repository. Including structure, configure triggers and steps that will follow.
+-  **Problem:** TLfint points out the lack of provider requirement in child module. Checkovs finds multiples problems regarding AWS provider
+- **Diagnosis:**
+- **Fix:** Add provider requirements in child module. Add aws_default_security_group  and skip using #checkov:skip other 2 problemas after being considered as an exception for this lab.
+- **Questions:**
+
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**
