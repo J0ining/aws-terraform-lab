@@ -1,0 +1,42 @@
+name: terraform-validation-actions
+on: 
+    push:
+        paths:
+            - 'infra/**'
+    workflow_dispatch:
+defaults:
+    run:
+        working-directory: ./infra
+jobs: 
+    validate_terraform:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: hashicorp/setup-terraform@v4
+            - uses: terraform-linters/setup-tflint@v6
+
+            - name: Terraform fmt
+              id: fmt
+              run: terraform fmt -check -recursive
+            - name: Terraform Init
+              id: init
+              run: terraform init -input=false
+              working-directory: ./infra/env/dev
+              
+            - name: Terraform Validate
+              id: validate
+              run: terraform validate -no-color
+              working-directory: ./infra/env/dev
+
+            - name: Init TFLint
+              run: tflint --init 
+              
+            - name: Run TFLint
+              run: tflint -f compact
+
+            - name: Test with Checkov
+              id: checkov
+              uses: bridgecrewio/checkov-action@master
+              with:
+                directory: ./infra
+                framework: terraform 
