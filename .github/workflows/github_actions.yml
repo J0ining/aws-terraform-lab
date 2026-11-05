@@ -15,7 +15,7 @@ jobs:
     validate_terraform:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v12
+            - uses: actions/checkout@v4
             - uses: hashicorp/setup-terraform@v4
             - uses: terraform-linters/setup-tflint@v6
               with:
@@ -42,7 +42,7 @@ jobs:
 
             - name: Test with Checkov
               id: checkov
-              uses: bridgecrewio/checkov-action@master
+              uses: bridgecrewio/checkov-action@12
               with:
                 directory: ./infra
                 framework: terraform 
