@@ -5,6 +5,9 @@ on:
             - 'infra/**'
             - '.github/workflows/**'
     workflow_dispatch:
+
+permissions:
+    contents: read
 defaults:
     run:
         working-directory: ./infra
@@ -12,9 +15,11 @@ jobs:
     validate_terraform:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v12
             - uses: hashicorp/setup-terraform@v4
             - uses: terraform-linters/setup-tflint@v6
+              with:
+               tflint_version: latest
 
             - name: Terraform fmt
               id: fmt
