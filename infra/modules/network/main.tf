@@ -1,4 +1,5 @@
 resource "aws_vpc" "main" {
+  #checkov:skip=CKV2_AWS_11: Flow logs adds additional cost. Not enable in lab enviroment
   cidr_block       = var.base_cidr_block
   instance_tenancy = "default" #Shared hardware. Default option. "Dedicated" option charges a fee
 

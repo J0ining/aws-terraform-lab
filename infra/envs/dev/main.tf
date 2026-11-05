@@ -3,10 +3,10 @@ provider "aws" {
 }
 
 data "aws_availability_zones" "available" {
+  #checkov:skip=CKV_AWS_394: AZ selected using indexes and risk accepted for the lab enviroment
   state = "available"
 }
 
-# Maybe use variables.tf instead
 
 
 locals {
