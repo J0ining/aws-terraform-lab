@@ -93,3 +93,19 @@
 - **Diagnosis:**
 - **Fix:**
 - **Questions:**
+
+## 06/10/2027 
+
+
+- **Done:** ALB created. TODO: egress rules when the reources are created. Checked that DNS returns 503 as there is no destinations yet.
+- **Learned** Basic configuration for an ALB. First interaction between modules using the root modules to share de output values from the network module to the alb module
+-  **Problem:** 
+- **Diagnosis:**
+- **Fix:** 
+- **Questions:**
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**
