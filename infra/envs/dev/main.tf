@@ -1,6 +1,4 @@
-provider "aws" {
-  region = "eu-south-2"
-}
+
 
 data "aws_availability_zones" "available" {
   #checkov:skip=CKV_AWS_394: AZ selected using indexes and risk accepted for the lab enviroment
@@ -41,5 +39,16 @@ module "network" {
   base_cidr_block           = "10.0.0.0/16"
   availability_zones_region = data.aws_availability_zones.available.names
   subnets_data              = local.fixed_subnets
+}
+
+module "alb" {
+  source            = "../../modules/alb"
+  vpc_id            = module.network.vpc_id
+  public_subnet_ids = module.network.public_subnet_ids
+
+  depends_on = [
+    module.network
+  ]
+
 }
 

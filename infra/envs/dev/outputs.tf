@@ -19,3 +19,16 @@ output "vpc_id" {
 
   value = module.network.vpc_id
 }
+
+
+output "alb_dns" {
+  value = module.alb.alb_dns
+}
+
+output "sg_id" {
+  value = module.alb.sg_id
+}
+
+output "tg_name" {
+  value = module.alb.tg_name
+}
