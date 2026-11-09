@@ -109,3 +109,20 @@
 - **Diagnosis:**
 - **Fix:**
 - **Questions:**
+
+
+## 06/10/2027 
+
+
+- **Done:** Compute module. WIP. Still need to add NAT and ASG.
+- **Learned** 
+-  **Problem:** 
+- **Diagnosis:**
+- **Fix:** 
+- **Questions:**
+
+- **Done:**
+-  **Problem:**
+- **Diagnosis:**
+- **Fix:**
+- **Questions:**

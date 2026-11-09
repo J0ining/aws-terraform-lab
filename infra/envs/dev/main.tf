@@ -5,6 +5,22 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
 
 
 locals {
@@ -52,3 +68,11 @@ module "alb" {
 
 }
 
+module "compute" {
+  source = "../../modules/compute"
+  vpc_id            = module.network.vpc_id
+  alb_id = module.alb.sg_id
+  aws_ami = aws_ami.ubuntu
+  private_subnet_ids = module.network.private_subnet_ids
+
+}
