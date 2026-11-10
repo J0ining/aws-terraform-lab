@@ -10,7 +10,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   filter {
@@ -18,7 +18,7 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"] # Canonical: checked with describe-images
 }
 
 
@@ -69,10 +69,14 @@ module "alb" {
 }
 
 module "compute" {
-  source = "../../modules/compute"
-  vpc_id            = module.network.vpc_id
-  alb_id = module.alb.sg_id
-  aws_ami = aws_ami.ubuntu
+  source             = "../../modules/compute"
+  vpc_id             = module.network.vpc_id
+  alb_id             = module.alb.sg_id
+  aws_ami_id         = data.aws_ami.ubuntu.id
   private_subnet_ids = module.network.private_subnet_ids
+
+  depends_on = [
+    module.network
+  ]
 
 }

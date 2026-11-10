@@ -4,9 +4,9 @@ variable "vpc_id" {
 }
 
 variable "alb_id" {
-    type = string
-    description = "Main ALB id"
-  
+  type        = string
+  description = "Main ALB id"
+
 }
 variable "private_subnet_ids" {
 
@@ -14,10 +14,10 @@ variable "private_subnet_ids" {
   description = "Private subnets ids"
 }
 
-variable "aws_ami" {
+variable "aws_ami_id" {
 
-    type = map(string)
+  type = string
 
-    description = "AWS AMI"
-  
+  description = "AWS AMI ID"
+
 }
