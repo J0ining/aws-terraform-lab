@@ -17,7 +17,6 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_ipv4" {
   to_port           = 80
 }
 
-# TODO: egress to resources
 
 resource "aws_lb" "lab_alb" {
   name               = "lab-alb-tf"

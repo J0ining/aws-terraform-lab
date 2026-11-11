@@ -71,9 +71,10 @@ module "alb" {
 module "compute" {
   source             = "../../modules/compute"
   vpc_id             = module.network.vpc_id
-  alb_id             = module.alb.sg_id
+  alb_sg_id          = module.alb.sg_id
   aws_ami_id         = data.aws_ami.ubuntu.id
   private_subnet_ids = module.network.private_subnet_ids
+  alb_tg_arn         = module.alb.alb_tg_arn
 
   depends_on = [
     module.network

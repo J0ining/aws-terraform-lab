@@ -70,8 +70,16 @@
 - **Done:** NAT Gateway with Elastic IP created and private route table with added rule to route traffic to NAT Gateway. Configure AMI data source for ec2 instances
 - **Learned:** Looked up available AMIs in a region and setting up parameters required for the data source. Created a NAT Gateway in a specific subnet. Add the NAT Gateway to a rule in the route table.
 
+## 11/11/2026
+- **Done:** ASG with launch template. Ubuntu 24.04, t3.micro and IMDSv2 required. user_data script for nginx installation and serves instances metadata (instance id, hostname and AZ). Two instances across two AZs, included in the ALB target group.
+- **Learned:** ASG registration reference target group so no need for attachment resource.
+-  **Problem:** Error creating ASG, no valid target group.
+- **Diagnosis:** It was using ALB arn, not the targets group arn
+- **Fix:** Modify alb module output to use target group arn and share it in root module to the compute module.
+
 ## Template
 - **Done:**
+- **Learned:**
 -  **Problem:**
 - **Diagnosis:**
 - **Fix:**
