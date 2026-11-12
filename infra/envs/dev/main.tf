@@ -47,6 +47,10 @@ locals {
     },
 
   ]
+  ##DB data
+  db_multi_az = false
+  db_username = "db_user"
+
 }
 
 
@@ -78,6 +82,20 @@ module "compute" {
 
   depends_on = [
     module.network
+  ]
+
+}
+
+module "database" {
+  source             = "../../modules/database"
+  vpc_id             = module.network.vpc_id
+  compute_sg_id      = module.compute.compute_sg_id
+  db_multi_az        = local.db_multi_az
+  db_user            = local.db_username
+  private_subnet_ids = module.network.private_subnet_ids
+  depends_on = [
+    module.network,
+    module.compute
   ]
 
 }

@@ -34,3 +34,13 @@ output "route_tables" {
 output "nat_gateway_info" {
   value = module.network.nat_gateway_info
 }
+
+output "db_info" {
+
+  value = {
+    "DB Endpoint" = module.database.db_endpoint
+    "Secret ARN"  = module.database.db_secret_arn
+    "User"        = module.database.db_user
+  }
+
+}
