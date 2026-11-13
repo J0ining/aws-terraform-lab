@@ -82,6 +82,12 @@
 - **Learned:** Checked engine and engine versions available and their specifications in the region I'm deploying. Basic connectivity of ec2 instances and rds databases using security groups.
 - **Pending:** Check that connectivity from ec2 instances to database works properly.
 
+## 13/11/2026
+- **Done:** Fixed the Checkov problems reported by the workflow. Fixed the ones that were free and recommended by the guide from checkov. Skip the ones that didn't apply to the lab or incur costs
+- **Learned:** Follow checkov recommendations and guides and judge if the problem describe apply to the lab. In that case choose to skip or resolve the problem. Skipping HTTPS related problems because they don't apply and adding descriptions when it was required.
+- **Pending:** Check that connectivity from ec2 instances to database works properly.
+
+
 ## Template
 - **Done:**
 - **Learned:**
