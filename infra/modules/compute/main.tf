@@ -16,7 +16,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_from_alb" {
   from_port                    = 80
   ip_protocol                  = "tcp"
   to_port                      = 80
-  description = "Compute Ingress rule for communication from ALB to instances"
+  description                  = "Compute Ingress rule for communication from ALB to instances"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_http_to_instances" {
@@ -27,7 +27,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_http_to_instances" {
   ip_protocol                  = "tcp"
   to_port                      = 80
 
-   description = "ALB Egress rule for communication from ALB to instances"
+  description = "ALB Egress rule for communication from ALB to instances"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_internet_ipv4" {
@@ -40,7 +40,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_internet_ipv4" {
   from_port         = each.value
   ip_protocol       = "tcp"
   to_port           = each.value
-  description = "Compute Egress rule for communication from instances to the internet"
+  description       = "Compute Egress rule for communication from instances to the internet"
 }
 
 resource "aws_launch_template" "instances_template" {
