@@ -25,14 +25,45 @@ output "vpc_id" {
 
 output "public_subnet_ids" {
 
-  value       = [for subnet in aws_subnet.main : subnet.id if subnet.tags.Type == "public"]
+  value       = local.public_subnet_ids
   description = "Public subnets ids"
 
 }
 
 output "private_subnet_ids" {
 
-  value       = [for subnet in aws_subnet.main : subnet.id if subnet.tags.Type == "private"]
+  value       = local.private_subnet_ids
   description = "Private subnets ids"
+
+}
+
+
+output "private_route_table_info" {
+  value = {
+    "Name"   = aws_route_table.private.tags.Name
+    "Routes" = aws_route_table.private.route
+  }
+
+  description = "Private Route Table Information"
+}
+
+output "public_route_table_info" {
+  value = {
+    "Name"   = aws_route_table.public.tags.Name
+    "Routes" = aws_route_table.public.route
+  }
+
+  description = "Public Route Table Information"
+}
+
+output "nat_gateway_info" {
+
+  value = {
+
+    "EIP" = aws_nat_gateway.main.allocation_id
+
+  }
+
+  description = "Nat Gateway Information"
 
 }

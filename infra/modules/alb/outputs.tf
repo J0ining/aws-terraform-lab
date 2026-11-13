@@ -17,10 +17,10 @@ output "tg_name" {
 
 }
 
-output "alb_arn" {
+output "alb_tg_arn" {
 
-  value = aws_lb.lab_alb.arn
+  value = aws_lb_target_group.alb_tg.arn
 
-  description = "ARN of the ALB"
+  description = "ALB Targert Group ARNM"
 
 }

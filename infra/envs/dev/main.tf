@@ -5,6 +5,22 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical: checked with describe-images
+}
+
 
 
 locals {
@@ -31,6 +47,10 @@ locals {
     },
 
   ]
+  ##DB data
+  db_multi_az = false
+  db_username = "db_user"
+
 }
 
 
@@ -52,3 +72,30 @@ module "alb" {
 
 }
 
+module "compute" {
+  source             = "../../modules/compute"
+  vpc_id             = module.network.vpc_id
+  alb_sg_id          = module.alb.sg_id
+  aws_ami_id         = data.aws_ami.ubuntu.id
+  private_subnet_ids = module.network.private_subnet_ids
+  alb_tg_arn         = module.alb.alb_tg_arn
+
+  depends_on = [
+    module.network
+  ]
+
+}
+
+module "database" {
+  source             = "../../modules/database"
+  vpc_id             = module.network.vpc_id
+  compute_sg_id      = module.compute.compute_sg_id
+  db_multi_az        = local.db_multi_az
+  db_user            = local.db_username
+  private_subnet_ids = module.network.private_subnet_ids
+  depends_on = [
+    module.network,
+    module.compute
+  ]
+
+}
