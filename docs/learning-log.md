@@ -77,6 +77,11 @@
 - **Diagnosis:** It was using ALB arn, not the targets group arn
 - **Fix:** Modify alb module output to use target group arn and share it in root module to the compute module.
 
+## 12/11/2026
+- **Done:** Database module with db instance resource. Using Postgresql engine version 18, a db.t3.micro instance with gp3 and 20GB. Implemented connection from ec2 instances using their security groups.
+- **Learned:** Checked engine and engine versions available and their specifications in the region I'm deploying. Basic connectivity of ec2 instances and rds databases using security groups.
+- **Pending:** Check that connectivity from ec2 instances to database works properly.
+
 ## Template
 - **Done:**
 - **Learned:**
