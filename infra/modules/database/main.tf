@@ -39,11 +39,11 @@ resource "aws_db_subnet_group" "db_private_subnet_group" {
 
 resource "aws_db_instance" "lab_db" {
   #checkov:skip= CKV_AWS_353: Performance insights not necessary for the lab
-  #checkov:skip = CKV_AWS_129: Logging in RDS no necessary for the lab
-  #checkov:skip = CKV_AWS_157: Multi-AZ disabled for this lab. Can be enable again from root module for testing
+  #checkov:skip= CKV_AWS_129: Logging in RDS no necessary for the lab
+  #checkov:skip= CKV_AWS_157: Multi-AZ disabled for this lab. Can be enable again from root module for testing
   #checkov:skip= CKV_AWS_118: Enchanced monitoring not necessary for the lab.
   #checkov:skip= CKV_AWS_293: Protection deletation not needed for lab
-  #checkov: skip= CKV2_AWS_30: Query Loggin not necessary for the lab
+  #checkov:skip= CKV2_AWS_30: Query Loggin not necessary for the lab
   identifier                          = "lab-db-instance"
   allocated_storage                   = 20
   storage_type                        = "gp3"
